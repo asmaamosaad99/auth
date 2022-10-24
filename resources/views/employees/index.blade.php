@@ -46,7 +46,10 @@
                                 <a class="btn btn-primary" href="{{ route('employees.edit',$employee->id) }}">Edit</a>
                                 @csrf
                                 @method('DELETE')
+                                @can('admin')
+
                                 <button type="submit" class="btn btn-danger">Delete</button>
+                                @endcan
                             </form>
                         </td>
                     </tr>

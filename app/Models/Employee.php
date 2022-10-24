@@ -10,4 +10,8 @@ class Employee extends Model
     use HasFactory;
 
     protected $fillable=['name','age','email'] ;
+
+    function depart(){
+        return $this->belongsToMany(Department::class);
+    }
 }

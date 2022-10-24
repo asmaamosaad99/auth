@@ -57,6 +57,14 @@
                     </div>
                 </div>
 
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
+                        <strong>Department id/strong>
+                        <input type="number" name="Department_id" class="form-control" placeholder="Department id">
+                        @error('Department_id')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary ml-3">Submit</button>
             </div>

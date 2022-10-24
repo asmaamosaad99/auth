@@ -17,6 +17,7 @@ class DepartmentFactory extends Factory
     public function definition()
     {
         return [
+            
             'Dname'=>fake()->name(),
 
         ];

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('employees', function (Blueprint $table) {
-            // $table->foreignId('Department_id')->references('id')->on('departments');
+        $table->foreignId('Department_id')->references('id')->on('departments');
 
         });
     }

@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Models\Employee;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\Auth;
+
+Auth::routes();
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +19,24 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-// Route::get('/p', function () {
-//     echo "hi asmaa" ;
-//     // return view('welcome');
+Route::get('/', function () {
+    // echo "hi asmaa" ;
+    return view('welcome');
+});
+Route::get('test', function () {
+dump(Auth::user());
+})->Middleware('isadmin');
+// Route::middleware('isadmin')->group(function(){
+
 // });
 Route::resource('employees', EmployeeController::class);
+Route::get('/depart' , function(){
+    $employee =Employee::find('5');
+    dd($employee->depart);
+}) ;
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

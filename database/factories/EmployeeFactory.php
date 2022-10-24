@@ -18,11 +18,10 @@ class EmployeeFactory extends Factory
     public function definition()
     {
         return [
-
             'name'=>fake()->name(),
             'age' =>fake()->numberBetween(20,80),
             'email'=>fake()->email(),
-            // 'Department_id' =>Department::inRandomOrder()->first(),
+            'Department_id' =>Department::inRandomOrder()->first(),
         ];
     }
 }
