@@ -1,0 +1,46 @@
+.loginFormContainer{
+    background-color:#2b2523;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.formWrapper{
+    width: 95%;
+    min-height: 90%;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 20px; */
+    border-radius: 8px;
+    box-shadow: 0 0 10px 2px #825312
+}
+
+.loginForm{
+    width: 430px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.loginForm .form-group{
+    width: 100%;
+}
+
+.loginForm button[type="submit"]{
+    margin-top: 2rem;
+    margin-bottom: 10px;
+}
+
+.loginForm  input{
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
