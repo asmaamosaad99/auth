@@ -3,20 +3,21 @@ session_start();
 include("connect.php");
 $count='';
 $error="";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   $user_email = $_POST['email'];
-   $pass = $_POST['password'];
+if (!empty($_REQUEST)) {
+   $user_email = $_REQUEST['email'];
+   $pass = $_REQUEST['password'];
    $hashedpass=sha1($pass);
-   $sql = 'SELECT * from admin where email =? and password= ? ';
-   $stmt = $connect->prepare($sql);
-   $stmt->execute(array($user_email, $pass));
-   $count = $stmt->rowCount();
+   $sql = "SELECT * from users where email ='$user_email' and password ='$pass' ";
+   $x = $connect->prepare($sql);
+   $y= $x->execute();
+   $count = $x->rowCount();
    if ($count == 1) {
-      $y = $stmt->fetchAll(PDO::FETCH_ASSOC);
-      $admin = $y[0]["id"];
-      $_SESSION['adminId'] = $admin; 
-      header("location:showusers.php");
+      $y = $x->fetchAll(PDO::FETCH_ASSOC);
+      $userId = $y[0]["id"];
+      $userName = $y[0]["name"];
+      $_SESSION['userId'] = $userId;
+      $_SESSION['userName'] = $userName;
+      header("location: home.php");
    } else {
       $error = "Your Login Email or Password is invalid";
    }
@@ -34,7 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    <link href="css/loginstyle.css" rel="stylesheet">
    <title>Document</title>
 </head>
-
 <body>
    <section class="loginFormContainer">
       <div class="formWrapper">
@@ -42,24 +42,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
          <h2 class="margin-bottom-30 text-center">Login</h2>
          <form action="" method="POST" class="loginForm">
-            <div class="form-group">
-               <input type="email" id="user_email" class="form-control" name="email" placeholder="Email"  required />
-            </div>
-            <div class="form-group">
-               <input type="password" class="form-control" name="password" placeholder="password" />
-            </div>
-            <button class="tm-more-button" type="submit" name="submit">login</button>
+
+               <div class="form-group">
+                  <input type="email" id="user_email" class="form-control" name="email" placeholder="Email"  required />
+               </div>
+
+               <div class="form-group">
+                  <input type="password" class="form-control" name="password" placeholder="password" />
+                  <input type="hidden" name="id" value="<?= $y[0]["id"]?>">
+               </div>
+               <a href="./check-email.php">forgot password? </a>
+                  <button class="tm-more-button" type="submit" name="submit">login</button>
+               <a href=" adminlogin.php">login as admin</a>
          </form>
          <div style = "font-size:11px; color:#cc0000; margin-top:10px">
                   <?php
-
                   if($count==0) {
                      echo $error;
                   }  
-                   
-                   ?>
-
-               
+                  ?>
                </div>
 
       </div>

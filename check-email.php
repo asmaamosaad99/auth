@@ -43,7 +43,7 @@ if(isset($_POST['reset_link'])){
             // Send email with the link
             $from = 'asmaamosaad1999@gmail.com';
             $to = $email;
-            $subject = 'Reset password from ZTC';
+            $subject = 'Reset password from Asmaa';
             $message = '
                 <p>Dear '.$email.',</p>
                 
@@ -52,7 +52,7 @@ if(isset($_POST['reset_link'])){
     
                 Best wishes,
                 <br>
-                <span>ZTC</span>
+                <span>Asmaa</span>
             ';
     
              // Set content-type when sending HTML email
